@@ -51,7 +51,6 @@ import {
 } from "remirror/extensions";
 
 const MENU_BAR_BG = "gray.100";
-const MENU_BAR_ACTIVE_BG = "gray.100";
 
 export const RichTextEditor: FC<IEditor> = (props) => {
   return (
@@ -77,19 +76,17 @@ export const Editor: FC<IEditor> = ({ value, onChange }) => {
   });
 
   return (
-    <Box border="1px" borderRadius={2} borderColor="gray.400" h="20em">
-      <Remirror
-        manager={manager}
-        state={state}
-        onChange={(param) => {
-          onChange(prosemirrorNodeToHtml(param.state.doc));
-          setState(param.state);
-        }}
-      >
-        <MenuBar />
-        <EditorComponent />
-      </Remirror>
-    </Box>
+    <Remirror
+      manager={manager}
+      state={state}
+      onChange={(param) => {
+        onChange(prosemirrorNodeToHtml(param.state.doc));
+        setState(param.state);
+      }}
+    >
+      <MenuBar />
+      <EditorComponent />
+    </Remirror>
   );
 };
 
@@ -98,7 +95,14 @@ const MenuBar = () => {
   const active = useActive();
 
   return (
-    <Flex wrap={"wrap"} bg={MENU_BAR_BG} gap={1}>
+    <Flex
+      wrap={"wrap"}
+      bg={MENU_BAR_BG}
+      gap={1}
+      top={0}
+      position="sticky"
+      zIndex={9999}
+    >
       <Headings />
       <MButton
         onClick={() => {
@@ -154,7 +158,7 @@ const Headings = () => {
 
   return (
     <>
-      {[1, 2, 3, 4, 5].map((level) => (
+      {[1, 2].map((level) => (
         <MButton
           key={level}
           onMouseDown={(event) => event.preventDefault()}
