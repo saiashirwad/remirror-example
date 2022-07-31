@@ -1,0 +1,25 @@
+.remirror-editor-wrapper {
+  position: flex;
+  flex-direction: column;
+  height: 80%;
+}
+
+.remirror-editor-wrapper .remirror-editor {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.remirror-theme .ProseMirror {
+  box-shadow: 0 0 0 0 #ccc;
+}
+
+.remirror-theme .ProseMirror:active, .remirror-theme .ProseMirror:focus {
+  box-shadow: none;
+}
+
+span.remirror-mention-atom.remirror-mention-atom-field {
+  font-family: monospace;
+  background-color: #f1f5f9ec;
+  border: 1px solid #46484a64;
+  color: black;
+}
